@@ -7,6 +7,12 @@ A simple tool for copying multiple folders. Made to help with backups, hence the
 
 ---
 
+## Version 1.1.1
+- Fixed remove selected button. It would previously always be enabled even if no item was selected.
+  This could cause and index out of range. The button is now disabled if no item is selected.
+  
+---
+
 ## Version 1.1.0
 - Added icon to the app
 - Added basic error handling on the backup functionality
