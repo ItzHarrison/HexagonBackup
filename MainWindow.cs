@@ -154,6 +154,7 @@ namespace HexagonBackup
         {
             list_SourceDirectories.Items.RemoveAt(list_SourceDirectories.SelectedIndex);
             BuildSourceList(AppDataFolder);
+            button_RemoveSource.Enabled = false;
         }
 
         private void button_ClearSource_Click(object sender, EventArgs e)
