@@ -41,12 +41,12 @@
             this.groupbox_Target = new System.Windows.Forms.GroupBox();
             this.label_Status = new System.Windows.Forms.Label();
             this.button_OpenTarget = new System.Windows.Forms.Button();
-            this.label_TimeElapsed = new System.Windows.Forms.Label();
             this.progress_Backup = new System.Windows.Forms.ProgressBar();
             this.textbox_Target = new System.Windows.Forms.TextBox();
             this.button_Backup = new System.Windows.Forms.Button();
             this.button_BrowseTarget = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.check_Shutdown = new System.Windows.Forms.CheckBox();
             this.groupbox_Sources.SuspendLayout();
             this.groupbox_Target.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -112,7 +112,7 @@
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(143, 13);
             this.label_Version.TabIndex = 7;
-            this.label_Version.Text = "Version 1.1.1 - Release Build";
+            this.label_Version.Text = "Version 1.2.0 - Release Build";
             this.label_Version.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button_ClearSource
@@ -158,9 +158,9 @@
             // 
             // groupbox_Target
             // 
+            this.groupbox_Target.Controls.Add(this.check_Shutdown);
             this.groupbox_Target.Controls.Add(this.label_Status);
             this.groupbox_Target.Controls.Add(this.button_OpenTarget);
-            this.groupbox_Target.Controls.Add(this.label_TimeElapsed);
             this.groupbox_Target.Controls.Add(this.progress_Backup);
             this.groupbox_Target.Controls.Add(this.textbox_Target);
             this.groupbox_Target.Controls.Add(this.button_Backup);
@@ -194,17 +194,6 @@
             this.button_OpenTarget.Text = "Open target directory";
             this.button_OpenTarget.UseVisualStyleBackColor = true;
             this.button_OpenTarget.Click += new System.EventHandler(this.button_OpenTarget_Click);
-            // 
-            // label_TimeElapsed
-            // 
-            this.label_TimeElapsed.AutoSize = true;
-            this.label_TimeElapsed.Enabled = false;
-            this.label_TimeElapsed.Location = new System.Drawing.Point(11, 160);
-            this.label_TimeElapsed.Name = "label_TimeElapsed";
-            this.label_TimeElapsed.Size = new System.Drawing.Size(73, 13);
-            this.label_TimeElapsed.TabIndex = 8;
-            this.label_TimeElapsed.Text = "Time elapsed:";
-            this.label_TimeElapsed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // progress_Backup
             // 
@@ -258,6 +247,17 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
+            // check_Shutdown
+            // 
+            this.check_Shutdown.AutoSize = true;
+            this.check_Shutdown.Location = new System.Drawing.Point(14, 163);
+            this.check_Shutdown.Name = "check_Shutdown";
+            this.check_Shutdown.Size = new System.Drawing.Size(149, 17);
+            this.check_Shutdown.TabIndex = 13;
+            this.check_Shutdown.Text = "Shutdown when complete";
+            this.check_Shutdown.UseVisualStyleBackColor = true;
+            this.check_Shutdown.CheckedChanged += new System.EventHandler(this.check_Shutdown_CheckedChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,10 +302,10 @@
         private System.Windows.Forms.Button button_Backup;
         private System.Windows.Forms.Button button_BrowseTarget;
         private System.Windows.Forms.ProgressBar progress_Backup;
-        private System.Windows.Forms.Label label_TimeElapsed;
         private System.Windows.Forms.Button button_OpenTarget;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label_Status;
+        private System.Windows.Forms.CheckBox check_Shutdown;
     }
 }
 

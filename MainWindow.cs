@@ -48,6 +48,24 @@ namespace HexagonBackup
             {
                 BuildSourceList(AppDataFolder);
             }
+
+            try
+            {
+                string sourceFile = File.ReadAllLines(AppDataFolder + @"\shutdown.check")[0];
+                Console.WriteLine($"content: {sourceFile}");
+                if (sourceFile == "True")
+                {
+                    check_Shutdown.Checked = true;
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                BuildShutdownCheck(AppDataFolder);
+            }
+            catch (FileNotFoundException)
+            {
+                BuildShutdownCheck(AppDataFolder);
+            }
         }
 
 
@@ -69,6 +87,12 @@ namespace HexagonBackup
         {
             Directory.CreateDirectory(path);
             File.WriteAllText(path + @"\item.tgt", textbox_Target.Text);
+        }
+
+        private void BuildShutdownCheck(string path)
+        {
+            Directory.CreateDirectory(path);
+            File.WriteAllText(path + @"\shutdown.check", check_Shutdown.Checked.ToString());
         }
 
 
@@ -254,7 +278,6 @@ namespace HexagonBackup
                 textbox_Target.Enabled = false;
 
                 label_Status.Enabled = true;
-                label_TimeElapsed.Enabled = true;
                 progress_Backup.Enabled = true;
 
                 BACKUP_IN_PROGRESS = true;
@@ -303,15 +326,18 @@ namespace HexagonBackup
                     BACKUP_IN_PROGRESS = false;
 
                     TimeSpan elapsedTime = DateTime.Now - start;
-                    label_TimeElapsed.Text = "Time elapsed: " + elapsedTime.ToString("g").Split('.')[0];
                     if (ERROR)
                     {
                         label_Status.Text = "Status: Error";
                     }
-                    else
+                    else if(!check_Shutdown.Checked)
                     {
                         label_Status.Text = "Status: Complete";
                         MessageBox.Show($"Success - Backup completed in {elapsedTime.ToString("g").Split('.')[0]}.", "Success - Backup completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        Process.Start("shutdown", "/s /t 0");
                     }
 
                     progress_Backup.UseWaitCursor = false;
@@ -320,7 +346,6 @@ namespace HexagonBackup
                     button_BrowseTarget.Enabled = true;
                     textbox_Target.Enabled = true;
                     label_Status.Enabled = false;
-                    label_TimeElapsed.Enabled = false;
                     progress_Backup.Enabled = false;                    
                     progress_Backup.Value = 0;
                 });
@@ -347,6 +372,11 @@ namespace HexagonBackup
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void check_Shutdown_CheckedChanged(object sender, EventArgs e)
+        {
+            BuildShutdownCheck(AppDataFolder);
         }
     }
 }
