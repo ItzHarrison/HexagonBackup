@@ -7,6 +7,11 @@ A simple tool for copying multiple folders. Made to help with backups, hence the
 
 ---
 
+## Version 1.2.0
+- Added a shutdown on completion feature and planned to improve configuration storage methods to using JSON in next patch.
+  
+---
+
 ## Version 1.1.1
 - Fixed remove selected button. It would previously always be enabled even if no item was selected.
   This could cause and index out of range. The button is now disabled if no item is selected.
